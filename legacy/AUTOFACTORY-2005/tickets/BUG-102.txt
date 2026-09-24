@@ -1,0 +1,7 @@
+BUG-102 (FICTIONAL)
+
+Symptom:
+Machine 7 stops when coolant flow falls below the safe minimum.
+
+Resolution:
+Retain the hard stop and investigate the coolant pump.

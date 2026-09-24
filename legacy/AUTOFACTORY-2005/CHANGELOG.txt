@@ -1,0 +1,6 @@
+AUTOFACTORY-2005 CHANGELOG (FICTIONAL)
+
+2005-08-19 - CHANGE-241 - Added status adapter design notes.
+2005-07-03 - BUG-187 - Changed temperature limit from 90C to 85C after
+                       Machine 7 thermal-stop investigation.
+2005-05-11 - BUG-102 - Added coolant-flow safety interlock.

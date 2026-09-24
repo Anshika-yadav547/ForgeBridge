@@ -1,0 +1,7 @@
+BUG-187 (FICTIONAL)
+
+Symptom:
+Machine 7 stopped after sustained high temperature.
+
+Resolution:
+Lower the temperature trip point from 90C to 85C.

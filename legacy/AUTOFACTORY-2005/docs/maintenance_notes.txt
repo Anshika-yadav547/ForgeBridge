@@ -1,0 +1,6 @@
+MAINTENANCE NOTES - FICTIONAL
+
+Machine 7 intermittently stopped during summer 2005. Investigation linked
+stops to heat accumulation near the enclosed spindle housing.
+
+The approved maintenance change lowered the trip point from 90C to 85C.

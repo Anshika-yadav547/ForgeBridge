@@ -1,0 +1,8 @@
+AUTOFACTORY-2005 FACTORY MANUAL (FICTIONAL)
+
+Machine controllers stop production when a safety limit is reached.
+
+The temperature limit is inclusive. At or above the configured value, the
+alarm is active and production is disabled.
+
+This repository is fictional demo data and is not an operational manual.

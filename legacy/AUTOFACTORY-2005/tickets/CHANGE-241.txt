@@ -1,0 +1,7 @@
+CHANGE-241 (FICTIONAL)
+
+Change:
+Expose machine status to a future monitoring application.
+
+Constraint:
+Do not bypass legacy safety interlocks.
