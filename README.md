@@ -1,35 +1,13 @@
-# ForgeBridge AI
+## Legacy language coverage
 
-ForgeBridge AI is a Copilot-like developer experience for understanding,
-troubleshooting, securing, and modernizing fictional legacy automotive
-manufacturing software.
+The primary executable demo is written in C. The repository also contains a
+fictional COBOL representation of the same Machine 7 safety logic:
 
-## Demonstration system
+`legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl`
 
-The legacy system is AUTOFACTORY-2005, located at:
+ForgeBridge detects COBOL program structure, paragraphs, variables, PERFORM
+relationships, and business rules. COBOL support is provided for source
+understanding and modernization demonstration.
 
-`legacy/AUTOFACTORY-2005`
-
-The primary demonstration question is:
-
-> Machine 7 keeps stopping. Why?
-
-ForgeBridge will trace legacy code, search project history, identify affected
-files, run security analysis, and expose machine status through a read-only
-modernization bridge.
-
-## Current status
-
-- Legacy C system: planned or in progress
-- Legacy tests: planned or in progress
-- History Agent: planned
-- Architecture Agent: planned
-- Security Agent: planned
-- Modern bridge: planned
-- React dashboard: planned
-
-## Fictional-data notice
-
-All factory data, tickets, maintenance notes, incidents, and documentation in
-this repository are fictional demonstration data. They must not be treated as
-real-world factory evidence.
+The COBOL sample is fictional and must not be treated as an operational
+factory program.
