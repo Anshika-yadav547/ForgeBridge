@@ -31,3 +31,18 @@ class AnalysisResponse(BaseModel):
     question: str
     answer: str
     agents: list[AgentFinding]
+
+
+# ---------------------------------------------------------------------------
+# MachineStatusResponse
+# Read-only modernization adapter — Member 4, security-migration branch.
+# Maps to the MachineStatus struct in legacy/AUTOFACTORY-2005/include/factory.h
+# and the response shape specified in legacy/AUTOFACTORY-2005/adapter/README.md.
+# ---------------------------------------------------------------------------
+
+class MachineStatusResponse(BaseModel):
+    machine_id: int
+    alarm_active: bool
+    production_enabled: bool
+    reason: str
+    source: str
