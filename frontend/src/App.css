@@ -1,0 +1,111 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #e8eef7;
+  background: #101722;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+header {
+  margin-bottom: 24px;
+}
+
+.label {
+  color: #6bc5ff;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin-bottom: 8px;
+}
+
+.warning {
+  padding: 14px;
+  margin: 20px 0;
+  color: #251c00;
+  background: #ffd166;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.card {
+  padding: 24px;
+  margin: 20px 0;
+  background: #192536;
+  border: 1px solid #30435d;
+  border-radius: 12px;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  color: #e8eef7;
+  background: #0e1622;
+  border: 1px solid #526987;
+  border-radius: 8px;
+  resize: vertical;
+}
+
+button {
+  padding: 12px 20px;
+  color: white;
+  background: #1677ff;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.finding {
+  padding: 16px;
+  margin-top: 14px;
+  background: #111b29;
+  border-left: 4px solid #6bc5ff;
+  border-radius: 6px;
+}
+
+.finding h3 {
+  color: #6bc5ff;
+}
+
+.finding li {
+  margin: 6px 0;
+  font-family: monospace;
+  color: #b8d7f2;
+}
+
+.modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modules span {
+  padding: 8px 12px;
+  background: #263b56;
+  border-radius: 20px;
+}
+
+.error {
+  color: #ff8a8a;
+}
