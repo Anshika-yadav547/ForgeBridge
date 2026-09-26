@@ -1,6 +1,6 @@
 
-from schemas import AgentFinding
-from integrated_analyzer import analyze_machine
+from backend.schemas import AgentFinding
+from backend.integrated_analyzer import analyze_machine
 
 
 def analyze_question(question: str) -> dict:

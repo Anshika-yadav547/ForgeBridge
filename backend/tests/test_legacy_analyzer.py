@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 import tempfile
 
-from legacy_analyzer import (
+from backend.legacy_analyzer import (
     detect_language,
     extract_program_name,
     extract_c_functions,

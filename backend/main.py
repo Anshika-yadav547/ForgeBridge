@@ -1,9 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-
-from machines import get_machine_status
-from orchestrator import analyze_question
-from schemas import AnalysisRequest, AnalysisResponse, MachineStatusResponse
+from backend.machines import get_machine_status
+from backend.orchestrator import analyze_question
+from backend.schemas import AnalysisRequest, AnalysisResponse, MachineStatusResponse
 
 
 app = FastAPI(title="ForgeBridge API")

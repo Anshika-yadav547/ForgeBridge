@@ -1,8 +1,7 @@
 
 from pathlib import Path
-
-from legacy_analyzer import diagnose_machine_7
-from history_analyzer import analyze_history
+from backend.legacy_analyzer import diagnose_machine_7
+from backend.history_analyzer import analyze_history
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent

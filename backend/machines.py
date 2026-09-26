@@ -16,7 +16,7 @@
 # machines are invented.  Unknown machine IDs raise KeyError so the API
 # layer can convert them to HTTP 404.
 
-from schemas import MachineStatusResponse
+from backend.schemas import MachineStatusResponse
 
 # ---------------------------------------------------------------------------
 # Demo fixture

@@ -3,7 +3,7 @@ import unittest
 import tempfile
 from pathlib import Path
 
-from history_analyzer import (
+from backend.history_analyzer import  (
     read_history,
     get_machine_history,
     summarize_history,

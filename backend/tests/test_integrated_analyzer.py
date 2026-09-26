@@ -3,13 +3,13 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from integrated_analyzer import analyze_machine
+from backend.integrated_analyzer import analyze_machine
 
 
 class TestIntegratedAnalyzer(unittest.TestCase):
 
-    @patch("integrated_analyzer.diagnose_machine_7")
-    @patch("integrated_analyzer.analyze_history")
+    @patch("backend.integrated_analyzer.diagnose_machine_7")
+    @patch("backend.integrated_analyzer.analyze_history")
     def test_successful_integration(self, mock_history, mock_diagnosis):
         mock_diagnosis.return_value = {
             "machine_id": 7,
@@ -49,8 +49,8 @@ class TestIntegratedAnalyzer(unittest.TestCase):
         self.assertEqual(result["status"], "error")
         self.assertIn("Machine 7 only", result["message"])
 
-    @patch("integrated_analyzer.diagnose_machine_7")
-    @patch("integrated_analyzer.analyze_history")
+    @patch("backend.integrated_analyzer.diagnose_machine_7")
+    @patch("backend.integrated_analyzer.analyze_history")
     def test_fictional_data_disclaimer(self, mock_history, mock_diagnosis):
         mock_diagnosis.return_value = {"machine_id": 7}
         mock_history.return_value = {
@@ -63,8 +63,8 @@ class TestIntegratedAnalyzer(unittest.TestCase):
         self.assertIn("fictional", result["evidence_note"].lower())
         self.assertIn("not real-world evidence", result["evidence_note"])
 
-    @patch("integrated_analyzer.diagnose_machine_7")
-    @patch("integrated_analyzer.analyze_history")
+    @patch("backend.integrated_analyzer.diagnose_machine_7")
+    @patch("backend.integrated_analyzer.analyze_history")
     def test_missing_history_file(self, mock_history, mock_diagnosis):
         mock_diagnosis.return_value = {"machine_id": 7}
         mock_history.return_value = {
