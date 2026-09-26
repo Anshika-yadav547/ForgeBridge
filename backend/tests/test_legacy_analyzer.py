@@ -219,3 +219,30 @@ class TestLegacyAnalyzer(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+
+
+    def test_cobol_temperature_disables_production(self):
+        path = self.create_file(
+            "machine.cbl",
+            "IF TEMPERATURE >= LIMIT\n"
+            "    MOVE 'Y' TO ALARM-ACTIVE\n"
+            "    MOVE 'N' TO PRODUCTION-ENABLED\n"
+            "END-IF.\n"
+        )
+
+        rules = extract_business_rules(path)
+
+        self.assertEqual(len(rules), 1)
+        self.assertEqual(
+            rules[0]["condition"],
+            "TEMPERATURE >= LIMIT"
+        )
+        self.assertEqual(
+            rules[0]["effects"],
+            [
+                {"variable": "ALARM-ACTIVE", "value": "'Y'"},
+                {"variable": "PRODUCTION-ENABLED", "value": "'N'"}
+            ]
+        )
