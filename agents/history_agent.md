@@ -47,6 +47,36 @@ The agent returns:
 * If no matching records exist, report that no matching historical records were found.
 * If the CSV file cannot be read, return an error instead of inventing results.
 
+## Historical Evidence Analysis
+
+When investigating the historical temperature-limit change for Machine 7:
+
+1. Check `legacy/AUTOFACTORY-2005/CHANGELOG.txt` for the recorded change from 90°C to 85°C.
+2. Check `legacy/AUTOFACTORY-2005/tickets/BUG-187.txt` for the documented symptom and resolution.
+3. Check `legacy/AUTOFACTORY-2005/docs/maintenance_notes.txt` for the investigation findings.
+4. Check the current temperature limit in `legacy/AUTOFACTORY-2005/include/factory.h`.
+
+### Evidence-Based Findings
+
+* The changelog records that the temperature limit changed from 90°C to 85°C after the Machine 7 thermal-stop investigation.
+* The maintenance notes link intermittent stops to heat accumulation near the enclosed spindle housing.
+* BUG-187 documents the temperature-limit change.
+* The C header defines the current default temperature limit as 85.0°C.
+* The available records do not explain why 85°C was selected specifically.
+
+### Historical Evidence Rules
+
+* Cite the exact file path supporting each historical claim.
+* Clearly distinguish documented facts from interpretations.
+* Do not invent missing historical details, people, dates, or technical explanations.
+* If an expected evidence file is missing, report that it could not be found.
+* Clearly label all AUTOFACTORY-2005 historical data as fictional.
+* Do not confuse historical findings with the current machine diagnosis.
+
+
+
+
+
 ## Implementation
 
 The History Agent is implemented in `backend/history_analyzer.py`.
