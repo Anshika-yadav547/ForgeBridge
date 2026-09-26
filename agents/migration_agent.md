@@ -18,7 +18,7 @@ review and approval before being applied.
 |---|---|---|
 | Legacy C source | `legacy/AUTOFACTORY-2005/src/` | Evaluation logic — read-only reference |
 | Legacy header | `legacy/AUTOFACTORY-2005/include/factory.h` | Types and constants |
-| Legacy config | `legacy/config/limits.cfg`, `legacy/config/machine.cfg` | Thresholds and machine identity |
+| Legacy config | `legacy/AUTOFACTORY-2005/config/limits.cfg`, `legacy/AUTOFACTORY-2005/config/machine.cfg` | Thresholds and machine identity |
 | Adapter design | `legacy/AUTOFACTORY-2005/adapter/README.md` | Authoritative endpoint specification |
 | Change ticket | `legacy/AUTOFACTORY-2005/tickets/CHANGE-241.txt` | Constraint: no interlock bypass |
 | Backend | `backend/` | Target for the REST API implementation |
@@ -62,7 +62,7 @@ Field definitions derived from `legacy/AUTOFACTORY-2005/include/factory.h`
 ## Machine 7 safety-status behaviour
 
 The following is derived entirely from `legacy/AUTOFACTORY-2005/src/alarm.c`
-and `legacy/config/limits.cfg`. Every statement is traceable to a source file.
+and `legacy/AUTOFACTORY-2005/config/limits.cfg`. Every statement is traceable to a source file.
 
 | Condition | File | Behaviour |
 |---|---|---|
@@ -77,7 +77,7 @@ The demo fixture in `main.c:6` is `{7, 86.2f, 3.1f, 22, 0}` — Machine 7 at
 therefore `alarm_active: true`, `reason: "temperature limit exceeded"`.
 
 Raw sensor scaling: `sensor.c:7` divides raw sensor values by 10.0
-(`sensor_scale=10` in `legacy/config/machine.cfg`).
+(`sensor_scale=10` in `legacy/AUTOFACTORY-2005/config/machine.cfg`).
 
 ## 404 behaviour
 
@@ -136,7 +136,7 @@ backend/main.py          ← FastAPI app; GET route only
         │
         ▼
 backend/adapter.py       ← Applies alarm.c evaluation logic in Python
-        │                   Reads thresholds from legacy/config/limits.cfg
+        │                   Reads thresholds from legacy/AUTOFACTORY-2005/config/limits.cfg
         ▼
 backend/schemas.py       ← Pydantic MachineStatusResponse model
 ```
@@ -160,7 +160,7 @@ No legacy C, COBOL, or configuration files are to be modified.
 
 - Do not modify `legacy/AUTOFACTORY-2005/src/` as part of the migration.
 - Do not modify `legacy/AUTOFACTORY-2005/cobol/` as part of the migration.
-- Do not modify `legacy/config/` as part of the migration.
+- Do not modify `legacy/AUTOFACTORY-2005/config/` as part of the migration.
 - Legacy safety interlock logic must be faithfully reproduced in the adapter,
   not relaxed, removed, or altered.
 - Require human review before applying any safety-related or deployment change.
@@ -190,6 +190,6 @@ Every modernization explanation must:
 | `legacy/AUTOFACTORY-2005/src/alarm.c` | Four-branch interlock evaluation logic |
 | `legacy/AUTOFACTORY-2005/src/temperature.c` | Temperature threshold comparison |
 | `legacy/AUTOFACTORY-2005/src/sensor.c` | Raw sensor scaling (÷ 10) |
-| `legacy/config/limits.cfg` | Threshold values: 85 °C, 10 lpm, 7.5 mm/s |
-| `legacy/config/machine.cfg` | Machine 7 identity and sensor scale |
+| `legacy/AUTOFACTORY-2005/config/limits.cfg` | Threshold values: 85 °C, 10 lpm, 7.5 mm/s |
+| `legacy/AUTOFACTORY-2005/config/machine.cfg` | Machine 7 identity and sensor scale |
 | `agents/security_agent.md` | Security scan rules for this codebase |

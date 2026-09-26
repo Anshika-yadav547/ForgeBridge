@@ -6,7 +6,7 @@
 #
 #   legacy/AUTOFACTORY-2005/src/alarm.c        (four-branch interlock logic)
 #   legacy/AUTOFACTORY-2005/include/factory.h  (MachineStatus struct / TEMP_LIMIT_DEFAULT)
-#   legacy/config/limits.cfg                   (85 °C, 10 lpm, 7.5 mm/s)
+#   legacy/AUTOFACTORY-2005/config/limits.cfg  (85 °C, 10 lpm, 7.5 mm/s)
 #   legacy/AUTOFACTORY-2005/src/main.c:6       (Machine 7 demo fixture)
 #
 # The legacy C source is NOT modified.  This adapter is a Python translation
@@ -33,7 +33,7 @@ _MACHINE_7_FIXTURE = {
 
 # ---------------------------------------------------------------------------
 # Thresholds
-# Source: legacy/config/limits.cfg and legacy/AUTOFACTORY-2005/include/factory.h
+# Source: legacy/AUTOFACTORY-2005/config/limits.cfg and legacy/AUTOFACTORY-2005/include/factory.h
 # ---------------------------------------------------------------------------
 _TEMP_LIMIT_C = 85.0       # factory.h: TEMP_LIMIT_DEFAULT; limits.cfg: temperature_limit_c=85
 _MIN_COOLANT_LPM = 10      # limits.cfg: minimum_coolant_flow_lpm=10

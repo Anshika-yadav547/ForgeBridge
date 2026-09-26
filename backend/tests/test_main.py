@@ -44,7 +44,7 @@ def test_analysis_returns_agent_sources():
 # Expected Machine 7 result is derived from:
 #   legacy/AUTOFACTORY-2005/src/main.c:6   — fixture: 86.2 °C, coolant 22 lpm
 #   legacy/AUTOFACTORY-2005/src/alarm.c    — temperature branch fires at >= 85 °C
-#   legacy/config/limits.cfg               — temperature_limit_c=85
+#   legacy/AUTOFACTORY-2005/config/limits.cfg — temperature_limit_c=85
 # ---------------------------------------------------------------------------
 
 
