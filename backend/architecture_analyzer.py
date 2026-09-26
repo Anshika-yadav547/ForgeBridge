@@ -173,7 +173,16 @@ def extract_cobol_paragraphs_and_performs(
             errors="ignore",
         )
 
+        program_match = COBOL_PROGRAM_ID_PATTERN.search(content)
+
+        if program_match:
+            program_name = program_match.group(1).upper()
+            program_id = f"{source_id}::{program_name}"
+        else:
+            program_id = source_id
+
         paragraphs = extract_cobol_paragraph_bodies(content)
+
         for paragraph_name, _ in paragraphs:
             paragraph_id = f"{source_id}::{paragraph_name}"
 
@@ -184,9 +193,9 @@ def extract_cobol_paragraphs_and_performs(
             )
 
             graph.add_edge(
-                source=source_id,
+                source=program_id,
                 target=paragraph_id,
-                kind="contains",
+                kind="program_contains",
             )
 
         for paragraph_name, body in paragraphs:

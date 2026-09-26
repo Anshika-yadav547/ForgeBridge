@@ -119,11 +119,16 @@ def test_cobol_perform_relationship_is_extracted():
     )
 
     assert (
+        f"{cobol_file}::MACHINE-STATUS",
+        f"{cobol_file}::MAIN-LOGIC",
+        "program_contains",
+    ) in edge_tuples
+
+    assert (
         f"{cobol_file}::MAIN-LOGIC",
         f"{cobol_file}::CHECK-TEMPERATURE",
         "performs",
     ) in edge_tuples
-
 
 def test_temperature_affected_files_are_returned():
     affected_files = get_temperature_affected_files(
@@ -135,18 +140,18 @@ def test_temperature_affected_files_are_returned():
         for item in affected_files
     }
 
-    assert (
-        "legacy/AUTOFACTORY-2005/src/alarm.c"
-        in affected_paths
-    )
+    expected_paths = {
+        "legacy/AUTOFACTORY-2005/src/alarm.c",
+        "legacy/AUTOFACTORY-2005/src/temperature.c",
+        "legacy/AUTOFACTORY-2005/include/factory.h",
+        "legacy/AUTOFACTORY-2005/tests/run_tests.sh",
+        "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+        "legacy/AUTOFACTORY-2005/tickets/BUG-187.txt",
+    }
+
+    assert expected_paths.issubset(affected_paths)
 
     assert (
-        "legacy/AUTOFACTORY-2005/src/temperature.c"
-        in affected_paths
-    )
-
-
-    assert (
-        "legacy/AUTOFACTORY-2005/tickets/BUG-187.txt"
-        in affected_paths
+        "legacy/AUTOFACTORY-2005/config/limits.cfg"
+        not in affected_paths
     )

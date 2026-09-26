@@ -109,38 +109,38 @@
   "edges": [
     {
       "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
-      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-COOLANT",
-      "kind": "contains"
-    },
-    {
-      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
-      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-EMERGENCY-STOP",
-      "kind": "contains"
-    },
-    {
-      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
-      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-TEMPERATURE",
-      "kind": "contains"
-    },
-    {
-      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
-      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-VIBRATION",
-      "kind": "contains"
-    },
-    {
-      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
-      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::DISPLAY-STATUS",
-      "kind": "contains"
-    },
-    {
-      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
       "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
       "kind": "contains"
     },
     {
-      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-COOLANT",
+      "kind": "program_contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-EMERGENCY-STOP",
+      "kind": "program_contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-TEMPERATURE",
+      "kind": "program_contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-VIBRATION",
+      "kind": "program_contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::DISPLAY-STATUS",
+      "kind": "program_contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
       "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
-      "kind": "contains"
+      "kind": "program_contains"
     },
     {
       "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
