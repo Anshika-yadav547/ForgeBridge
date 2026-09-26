@@ -1,0 +1,246 @@
+{
+  "nodes": [
+    {
+      "id": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "type": "cobol_file",
+      "label": "MACHINE-STATUS.cbl"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-COOLANT",
+      "type": "cobol_paragraph",
+      "label": "CHECK-COOLANT"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-EMERGENCY-STOP",
+      "type": "cobol_paragraph",
+      "label": "CHECK-EMERGENCY-STOP"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-TEMPERATURE",
+      "type": "cobol_paragraph",
+      "label": "CHECK-TEMPERATURE"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-VIBRATION",
+      "type": "cobol_paragraph",
+      "label": "CHECK-VIBRATION"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::DISPLAY-STATUS",
+      "type": "cobol_paragraph",
+      "label": "DISPLAY-STATUS"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
+      "type": "cobol_program",
+      "label": "MACHINE-STATUS"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
+      "type": "cobol_paragraph",
+      "label": "MAIN-LOGIC"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/include/factory.h",
+      "type": "header",
+      "label": "factory.h"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/alarm.c",
+      "type": "c_file",
+      "label": "alarm.c"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/alarm.c::evaluate_machine",
+      "type": "function",
+      "label": "evaluate_machine()"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/diagnostics.c",
+      "type": "c_file",
+      "label": "diagnostics.c"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/diagnostics.c::print_diagnostic",
+      "type": "function",
+      "label": "print_diagnostic()"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/main.c",
+      "type": "c_file",
+      "label": "main.c"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/main.c::main",
+      "type": "function",
+      "label": "main()"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/production.c",
+      "type": "c_file",
+      "label": "production.c"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/production.c::production_can_run",
+      "type": "function",
+      "label": "production_can_run()"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/sensor.c",
+      "type": "c_file",
+      "label": "sensor.c"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/sensor.c::read_temperature",
+      "type": "function",
+      "label": "read_temperature()"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/temperature.c",
+      "type": "c_file",
+      "label": "temperature.c"
+    },
+    {
+      "id": "legacy/AUTOFACTORY-2005/src/temperature.c::temperature_exceeds_limit",
+      "type": "function",
+      "label": "temperature_exceeds_limit()"
+    }
+  ],
+  "edges": [
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-COOLANT",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-EMERGENCY-STOP",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-TEMPERATURE",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-VIBRATION",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::DISPLAY-STATUS",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MACHINE-STATUS",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-COOLANT",
+      "kind": "performs"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-EMERGENCY-STOP",
+      "kind": "performs"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-TEMPERATURE",
+      "kind": "performs"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::CHECK-VIBRATION",
+      "kind": "performs"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::MAIN-LOGIC",
+      "target": "legacy/AUTOFACTORY-2005/cobol/MACHINE-STATUS.cbl::DISPLAY-STATUS",
+      "kind": "performs"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/alarm.c",
+      "target": "legacy/AUTOFACTORY-2005/include/factory.h",
+      "kind": "includes"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/alarm.c",
+      "target": "legacy/AUTOFACTORY-2005/src/alarm.c::evaluate_machine",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/alarm.c::evaluate_machine",
+      "target": "legacy/AUTOFACTORY-2005/src/temperature.c::temperature_exceeds_limit",
+      "kind": "calls_heuristic"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/diagnostics.c",
+      "target": "legacy/AUTOFACTORY-2005/include/factory.h",
+      "kind": "includes"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/diagnostics.c",
+      "target": "legacy/AUTOFACTORY-2005/src/diagnostics.c::print_diagnostic",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/main.c",
+      "target": "legacy/AUTOFACTORY-2005/include/factory.h",
+      "kind": "includes"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/main.c",
+      "target": "legacy/AUTOFACTORY-2005/src/main.c::main",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/main.c::main",
+      "target": "legacy/AUTOFACTORY-2005/src/alarm.c::evaluate_machine",
+      "kind": "calls_heuristic"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/main.c::main",
+      "target": "legacy/AUTOFACTORY-2005/src/diagnostics.c::print_diagnostic",
+      "kind": "calls_heuristic"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/production.c",
+      "target": "legacy/AUTOFACTORY-2005/include/factory.h",
+      "kind": "includes"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/production.c",
+      "target": "legacy/AUTOFACTORY-2005/src/production.c::production_can_run",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/sensor.c",
+      "target": "legacy/AUTOFACTORY-2005/include/factory.h",
+      "kind": "includes"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/sensor.c",
+      "target": "legacy/AUTOFACTORY-2005/src/sensor.c::read_temperature",
+      "kind": "contains"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/temperature.c",
+      "target": "legacy/AUTOFACTORY-2005/include/factory.h",
+      "kind": "includes"
+    },
+    {
+      "source": "legacy/AUTOFACTORY-2005/src/temperature.c",
+      "target": "legacy/AUTOFACTORY-2005/src/temperature.c::temperature_exceeds_limit",
+      "kind": "contains"
+    }
+  ]
+}
