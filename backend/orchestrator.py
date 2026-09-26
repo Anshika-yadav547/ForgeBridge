@@ -1,4 +1,6 @@
+
 from schemas import AgentFinding
+from integrated_analyzer import analyze_machine
 
 
 def analyze_question(question: str) -> dict:
@@ -16,21 +18,12 @@ def analyze_question(question: str) -> dict:
             ],
             status="supported-by-sources",
         ),
-        AgentFinding(
-            agent="HistoryAgent",
-            language=None,
-            finding=(
-                "The fictional temperature limit changed from 90C to 85C "
-                "after a Machine 7 thermal-stop investigation."
-            ),
-            sources=[
-                "legacy/AUTOFACTORY-2005/tickets/BUG-187.txt",
-                "legacy/AUTOFACTORY-2005/CHANGELOG.txt",
-                "legacy/AUTOFACTORY-2005/docs/maintenance_notes.txt",
-            ],
-            status="supported-by-sources",
-        ),
     ]
+
+    integrated = analyze_machine()
+    history = integrated["historical_analysis"]
+    history_finding = AgentFinding(**history)
+    findings.append(history_finding)
 
     return {
         "question": question,

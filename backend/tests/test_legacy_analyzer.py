@@ -215,13 +215,7 @@ class TestLegacyAnalyzer(unittest.TestCase):
         self.assertEqual(result["program"], "MACHINE-STATUS")
         self.assertIn("MAIN-LOGIC", result["paragraphs"])
         self.assertEqual(result["status"], "parsed")
-
-
-if __name__ == "__main__":
-    unittest.main()
-
-
-
+        
 
     def test_cobol_temperature_disables_production(self):
         path = self.create_file(
@@ -243,6 +237,17 @@ if __name__ == "__main__":
             rules[0]["effects"],
             [
                 {"variable": "ALARM-ACTIVE", "value": "'Y'"},
-                {"variable": "PRODUCTION-ENABLED", "value": "'N'"}
-            ]
+                {"variable": "PRODUCTION-ENABLED", "value": "'N'"},
+            ],
         )
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
+
+
+
+
+    

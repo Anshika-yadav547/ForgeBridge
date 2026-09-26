@@ -5,44 +5,78 @@ from legacy_analyzer import diagnose_machine_7
 from history_analyzer import analyze_history
 
 
-BASE_DIR = Path(__file__).resolve().parent
-HISTORY_FILE = BASE_DIR / "test_history.csv"
+BASE_DIR = Path(__file__).resolve().parent.parent
+HISTORY_FILE = (
+    BASE_DIR
+    / "legacy"
+    / "AUTOFACTORY-2005"
+    / "docs"
+    / "machine_history.csv"
+)
 
 
-def analyze_machine(machine_id=7, history_file=HISTORY_FILE):
-    """
-    Combine the current legacy diagnosis with historical machine records.
+def analyze_machine(
+    machine_id: int = 7,
+    history_file: Path = HISTORY_FILE,
+) -> dict:
+    if not isinstance(machine_id, int) or isinstance(machine_id, bool):
+        raise TypeError("machine_id must be an integer")
 
-    Current diagnosis and historical events are kept separate.
-    """
+    if not isinstance(history_file, Path):
+        raise TypeError("history_file must be a Path")
+
+   
 
     if machine_id != 7:
-        return {
-            "status": "error",
-            "message": "The current legacy demo supports Machine 7 only.",
-        }
+       return {
+           "agent": "ForgeBridge Integrated Analyzer",
+           "machine_id": machine_id,
+           "status": "error",
+           "message": "Machine 7 only is currently supported.",
+        } 
 
-    # Analyze the current machine state using the legacy source code.
     current_diagnosis = diagnose_machine_7()
 
-    # Read historical records from the specified CSV file.
+    if not history_file.exists():
+        history = {
+            "status": "error",
+            "message": f"Machine history file not found: {history_file}",
+    }
+    else:
+        history = analyze_history(str(history_file), machine_id)
+
+
+
+
+
     history = analyze_history(str(history_file), machine_id)
+
+    historical_finding = {
+        **history,
+        "agent": "HistoryAgent",
+        "language": None,
+        "finding": (
+            history.get("summary")
+            or history.get("reason")
+            or "No historical information found."
+        ),
+        "sources": [str(history_file)],
+        "status": (
+            "supported-by-sources"
+            if history.get("summary")
+            else "error"
+        ),
+    }
 
     return {
         "agent": "ForgeBridge Integrated Analyzer",
         "machine_id": machine_id,
         "current_diagnosis": current_diagnosis,
-        "historical_analysis": history,
+        "historical_analysis": historical_finding,
         "evidence_note": (
-            "AUTOFACTORY-2005 and test_history.csv contain fictional "
-            "demonstration data, not real-world evidence."
+            "This is fictional legacy factory data and not real-world evidence. "
+            "Current diagnosis is based on legacy code. "
+            "Historical analysis is based on the machine history CSV."
         ),
     }
-
-
-if __name__ == "__main__":
-    import json
-
-    result = analyze_machine()
-    print(json.dumps(result, indent=4, default=str))
 
