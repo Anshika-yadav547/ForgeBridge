@@ -1,0 +1,4 @@
+machine_id,date,event,description
+7,2026-09-20,STOP,Temperature limit exceeded
+7,2026-09-21,INSPECTION,Machine inspected
+8,2026-09-22,STOP,Coolant flow issue

@@ -1,0 +1,4 @@
+machine_id,date,event,description
+7,2005-05-11,BUG-102,Coolant-flow safety interlock added.
+7,2005-07-03,BUG-187,Temperature limit changed from 90°C to 85°C after a thermal-stop investigation.
+7,2005-08-19,CHANGE-241,Status adapter design notes added for future monitoring.
