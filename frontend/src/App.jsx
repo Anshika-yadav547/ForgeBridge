@@ -1,121 +1,176 @@
-import { useState } from "react";
-import "./App.css";
+import { useEffect,useState } from 'react'
+import Chat from './components/Chat'
+import CodebaseMap from './components/CodebaseMap'
+import SecurityPanel from './components/SecurityPanel'
+import MigrationPanel from './components/MigrationPanel'
+import { getMachineStatus } from './api'
+import './App.css'
 
 function App() {
-  const [question, setQuestion] = useState(
-    "Machine 7 keeps stopping. Why?"
-  );
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [activePage, setActivePage] = useState('Dashboard')
+ const [machine, setMachine] = useState(null)
+  const [machineError, setMachineError] = useState('')
 
-  async function askForgeBridge() {
-    setLoading(true);
-    setError("");
-    setResult(null);
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/analyze", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ question })
-      });
-
-      if (!response.ok) {
-        throw new Error("Backend request failed");
-      }
-
-      const data = await response.json();
-      setResult(data);
-    } catch {
-      setError(
-        "Could not connect to the backend. Confirm that Uvicorn is running on port 8000."
-      );
-    } finally {
-      setLoading(false);
-    }
-  }
+  useEffect(() => {
+    getMachineStatus(7)
+      .then((data) => {
+        setMachine(data)
+      })
+      .catch((error) => {
+        console.error(error)
+        setMachineError('Unable to load machine status')
+      })
+  }, [])
 
   return (
-    <main className="app">
-      <header>
-        <p className="label">FORGEBRIDGE AI</p>
-        <h1>Legacy Automotive Intelligence</h1>
-        <p>
-          Understand, troubleshoot, secure, and modernize fictional legacy
-          factory software.
-        </p>
+    <div className="app">
+      {/* Header */}
+      <header className="header">
+        <div className="brand">
+  <div className="brand-icon">F</div>
+  <div>
+    <h1>ForgeBridge</h1>
+    <p>Legacy System Intelligence Platform</p>
+  </div>
+</div>
+
+        <div className="system-info">
+          <span className="status-dot"></span>
+          AUTOFACTORY-2005
+        </div>
       </header>
 
-      <div className="warning">
-        Fictional demonstration data — not real factory evidence.
+      {/* Navigation */}
+      <nav className="navbar">
+  <button
+    className={activePage === 'Dashboard' ? 'active' : ''}
+    onClick={() => setActivePage('Dashboard')}
+  >
+    Dashboard
+  </button>
+
+  <button
+    className={activePage === 'Chat' ? 'active' : ''}
+    onClick={() => setActivePage('Chat')}
+  >
+    Chat
+  </button>
+
+  <button
+    className={activePage === 'Codebase Map' ? 'active' : ''}
+    onClick={() => setActivePage('Codebase Map')}
+  >
+    Codebase Map
+  </button>
+
+  <button
+    className={activePage === 'Security' ? 'active' : ''}
+    onClick={() => setActivePage('Security')}
+  >
+    Security
+  </button>
+
+  <button
+    className={activePage === 'Migration' ? 'active' : ''}
+    onClick={() => setActivePage('Migration')}
+  >
+    Migration
+  </button>
+</nav>
+
+      {/* Main content */}
+      <main className="main">
+        {activePage === 'Chat' ? (
+  <Chat />
+) : activePage === 'Codebase Map' ? (
+  <CodebaseMap />
+) : activePage === 'Security' ? (
+  <SecurityPanel />
+) : activePage === 'Migration' ? (
+  <MigrationPanel />
+) : (
+      <div>
+        <h2>System Overview</h2>
+        <p className="subtitle">
+          Monitor and understand the AUTOFACTORY-2005 legacy system.
+        </p>
+
+        <div className="cards">
+
+          {/* Test Status */}
+          <div className="card">
+            <h3>Test Status</h3>
+            <div className="card-value success">✓ PASS</div>
+            <p>System tests completed successfully</p>
+          </div>
+
+          {/* Security */}
+          <div className="card">
+            <h3>Security Scan</h3>
+            <div className="card-value success">✓ SCANNED</div>
+            <p>Legacy code security analysis</p>
+          </div>
+
+          {/* API */}
+          <div className="card">
+            <h3>Modernization API</h3>
+            <div className="card-value">🔒 READ-ONLY</div>
+            <p>No machine control endpoints exposed</p>
+          </div>
+
+        </div>
+
+        {/* Machine 7 */}
+        <section className="machine-section">
+  <h2>Machine 7</h2>
+
+  {machineError ? (
+    <div className="alert">
+      <strong>⚠ {machineError}</strong>
+    </div>
+  ) : machine ? (
+    <>
+      <div className="machine-status">
+
+        <div>
+          <span className="label">Temperature</span>
+          <strong>{machine.temperature}°C</strong>
+        </div>
+
+        <div>
+          <span className="label">Limit</span>
+          <strong>{machine.limit}°C</strong>
+        </div>
+
+        <div>
+          <span className="label">Production</span>
+          <strong className="danger">
+            {machine.production_enabled ? 'ENABLED' : 'DISABLED'}
+          </strong>
+        </div>
+
       </div>
 
-      <section className="card">
-        <h2>Ask ForgeBridge</h2>
+      <div className="alert">
+        <strong>
+          {machine.alarm_active
+            ? '⚠ Temperature limit exceeded'
+            : '✓ Machine operating normally'}
+        </strong>
 
-        <textarea
-          value={question}
-          onChange={(event) => setQuestion(event.target.value)}
-          rows="4"
-        />
+        <p>{machine.reason}</p>
+      </div>
+    </>
+  ) : (
+    <p>Loading machine status...</p>
+  )}
 
-        <button onClick={askForgeBridge} disabled={loading}>
-          {loading ? "Analyzing..." : "Analyze"}
-        </button>
-
-        {error && <p className="error">{error}</p>}
-      </section>
-
-      {result && (
-        <section className="card">
-          <h2>Answer</h2>
-          <p>{result.answer}</p>
-
-          <h2>Agent findings</h2>
-
-          {result.agents.map((agent, index) => (
-            <article className="finding" key={`${agent.agent}-${index}`}>
-              <h3>{agent.agent}</h3>
-
-              {agent.language && (
-                <p>
-                  <strong>Language:</strong> {agent.language}
-                </p>
-              )}
-
-              <p>{agent.finding}</p>
-
-              <p>
-                <strong>Status:</strong> {agent.status}
-              </p>
-
-              <h4>Sources</h4>
-              <ul>
-                {agent.sources.map((source) => (
-                  <li key={source}>{source}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </section>
-      )}
-
-      <section className="card">
-        <h2>Project modules</h2>
-
-        <div className="modules">
-          <span>Legacy Analysis</span>
-          <span>History</span>
-          <span>Architecture</span>
-          <span>Security</span>
-          <span>Migration</span>
-        </div>
-      </section>
-    </main>
-  );
+</section>
+      </div>
+                )}
+      </main>
+    </div>
+  )
 }
 
-export default App;
+export default App
