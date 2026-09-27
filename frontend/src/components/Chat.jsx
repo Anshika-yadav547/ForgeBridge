@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { askAssistant } from '../api'
 
 function Chat() {
   const [question, setQuestion] = useState('')
@@ -9,20 +10,43 @@ function Chat() {
     }
   ])
 
-  const handleSend = () => {
-    if (!question.trim()) return
+ const handleSend = async () => {
+  if (!question.trim()) return
 
-    setMessages([
-      ...messages,
+  const userQuestion = question
+
+  setMessages((prev) => [
+    ...prev,
+    {
+      type: 'user',
+      text: userQuestion
+    }
+  ])
+
+  setQuestion('')
+
+  try {
+    const data = await askAssistant(userQuestion)
+
+    setMessages((prev) => [
+      ...prev,
       {
-        type: 'user',
-        text: question
+        type: 'bot',
+        text: data.answer
       }
     ])
+  } catch (error) {
+    console.error(error)
 
-    setQuestion('')
+    setMessages((prev) => [
+      ...prev,
+      {
+        type: 'bot',
+        text: 'Sorry, I could not connect to the ForgeBridge backend.'
+      }
+    ])
   }
-
+}
   return (
     <div className="chat-page">
       <h2>Legacy System Assistant</h2>

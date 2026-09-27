@@ -1,3 +1,5 @@
+import json
+from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -31,6 +33,35 @@ def health():
         "legacy_system": "AUTOFACTORY-2005",
     }
 
+@app.get("/api/architecture")
+def get_architecture():
+    graph_path = Path(__file__).parent.parent / "architecture" / "graph.json"
+
+    try:
+        with open(graph_path, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        raise HTTPException(
+            status_code=404,
+            detail="Architecture graph not found"
+        )
+
+@app.get("/api/security")
+def get_security_results():
+    security_path = (
+        Path(__file__).parent.parent
+        / "security"
+        / "semgrep-results.json"
+    )
+
+    try:
+        with open(security_path, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        raise HTTPException(
+            status_code=404,
+            detail="Security scan results not found"
+        )
 
 @app.post("/api/analyze", response_model=AnalysisResponse)
 def analyze(request: AnalysisRequest):

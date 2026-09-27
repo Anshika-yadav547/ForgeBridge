@@ -1,12 +1,26 @@
-import { useState } from 'react'
+import { useEffect,useState } from 'react'
 import Chat from './components/Chat'
 import CodebaseMap from './components/CodebaseMap'
 import SecurityPanel from './components/SecurityPanel'
 import MigrationPanel from './components/MigrationPanel'
+import { getMachineStatus } from './api'
 import './App.css'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
+ const [machine, setMachine] = useState(null)
+  const [machineError, setMachineError] = useState('')
+
+  useEffect(() => {
+    getMachineStatus(7)
+      .then((data) => {
+        setMachine(data)
+      })
+      .catch((error) => {
+        console.error(error)
+        setMachineError('Unable to load machine status')
+      })
+  }, [])
 
   return (
     <div className="app">
@@ -108,33 +122,50 @@ function App() {
 
         {/* Machine 7 */}
         <section className="machine-section">
-          <h2>Machine 7</h2>
+  <h2>Machine 7</h2>
 
-          <div className="machine-status">
-            <div>
-              <span className="label">Temperature</span>
-              <strong>86.2°C</strong>
-            </div>
+  {machineError ? (
+    <div className="alert">
+      <strong>⚠ {machineError}</strong>
+    </div>
+  ) : machine ? (
+    <>
+      <div className="machine-status">
 
-            <div>
-              <span className="label">Limit</span>
-              <strong>85°C</strong>
-            </div>
+        <div>
+          <span className="label">Temperature</span>
+          <strong>{machine.temperature}°C</strong>
+        </div>
 
-            <div>
-              <span className="label">Production</span>
-              <strong className="danger">DISABLED</strong>
-            </div>
-          </div>
+        <div>
+          <span className="label">Limit</span>
+          <strong>{machine.limit}°C</strong>
+        </div>
 
-          <div className="alert">
-            <strong>⚠ Temperature limit exceeded</strong>
-            <p>
-              Machine 7 reached 86.2°C, exceeding the configured
-              85°C limit. The alarm is active and production is disabled.
-            </p>
-          </div>
-        </section>
+        <div>
+          <span className="label">Production</span>
+          <strong className="danger">
+            {machine.production_enabled ? 'ENABLED' : 'DISABLED'}
+          </strong>
+        </div>
+
+      </div>
+
+      <div className="alert">
+        <strong>
+          {machine.alarm_active
+            ? '⚠ Temperature limit exceeded'
+            : '✓ Machine operating normally'}
+        </strong>
+
+        <p>{machine.reason}</p>
+      </div>
+    </>
+  ) : (
+    <p>Loading machine status...</p>
+  )}
+
+</section>
       </div>
                 )}
       </main>
